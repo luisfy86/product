@@ -1,8 +1,8 @@
-package service.impl;
+package com.luis.product.service.impl;
 
-import model.Product;
+import com.luis.product.model.Product;
 import org.springframework.stereotype.Service;
-import service.ProductService;
+import com.luis.product.service.ProductService;
 
 import java.util.Arrays;
 import java.util.List;

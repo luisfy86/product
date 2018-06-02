@@ -1,4 +1,4 @@
-package model;
+package com.luis.product.model;
 
 public class Product {
 

@@ -1,6 +1,6 @@
-package service;
+package com.luis.product.service;
 
-import model.Product;
+import com.luis.product.model.Product;
 
 import java.util.List;
 
