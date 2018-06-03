@@ -1,9 +1,17 @@
 package com.luis.product.model;
 
-public class Product {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+public class Product implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int catId;
 
     public int getId() {
