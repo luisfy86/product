@@ -1,24 +1,27 @@
 package com.luis.product.model;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import org.springframework.data.annotation.Id;
+//import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.io.Serializable;
 
-@Entity
+//@Document(indexName = "product", type="external")
+@Document
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(nullable = false)
+    private String id;
     private String name;
-    @Column(nullable = false)
     private int catId;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

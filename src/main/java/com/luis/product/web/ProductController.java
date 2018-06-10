@@ -16,13 +16,8 @@ public class ProductController {
     ProductService productService;
 
     @RequestMapping("/product/{id}")
-    Product getProduct(@PathVariable("id")int id){
+    Product getProduct(@PathVariable("id")String id){
         return productService.getProduct(id);
-    }
-
-    @RequestMapping("/productIds")
-    List<Integer> getProductIds(@RequestParam("id")int id){
-        return productService.getProductIds(id);
     }
 
     @RequestMapping("/products")
@@ -37,13 +32,13 @@ public class ProductController {
     }
 
     @RequestMapping(value="/product/{id}", method = RequestMethod.PUT)
-    ResponseEntity<Product> updateProduct(@PathVariable("id") int id,
+    ResponseEntity<Product> updateProduct(@PathVariable("id") String id,
                                           @RequestBody Product product) {
         return new ResponseEntity<Product>(productService.updateProduct(product, id), HttpStatus.OK);
     }
 
     @RequestMapping(value="/product/{id}", method = RequestMethod.DELETE)
-    ResponseEntity<Product> deleteProduct(@PathVariable("id") int id) {
+    ResponseEntity<Product> deleteProduct(@PathVariable("id") String id) {
         productService.deleteProduct(id);
         return new ResponseEntity<Product>(HttpStatus.OK);
     }

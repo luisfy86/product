@@ -16,14 +16,12 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    @Override
-    public Product getProduct(int id) {
-        return (productRepository.findById(id)).get();
-    }
+    @Autowired
+    ProductMsgProducer producer;
 
     @Override
-    public List<Integer> getProductIds(int id) {
-        return Arrays.asList(id+1,id+2,id+3);
+    public Product getProduct(String id) {
+        return (productRepository.findById(id)).get();
     }
 
     @Override
@@ -37,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Product product, int id) {
+    public Product updateProduct(Product product, String id) {
         Optional<Product> optional = productRepository.findById(id);
         Product existingProduct = optional.get();
         existingProduct.setCatId(product.getCatId());
@@ -47,7 +45,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(String id) {
+        Optional<Product> optional = productRepository.findById(id);
+        Product existingProduct = optional.get();
         productRepository.deleteById(id);
+        producer.sendUpdate(existingProduct, true);
     }
 }
