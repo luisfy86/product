@@ -8,6 +8,7 @@ import com.luis.product.service.ProductService;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -17,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(int id) {
-        return productRepository.findOne(id);
+        return (productRepository.findById(id)).get();
     }
 
     @Override
@@ -37,7 +38,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product, int id) {
-        Product existingProduct = productRepository.findOne(id);
+        Optional<Product> optional = productRepository.findById(id);
+        Product existingProduct = optional.get();
         existingProduct.setCatId(product.getCatId());
         existingProduct.setName(product.getName());
         Product savedProduct = productRepository.save(existingProduct);
@@ -46,6 +48,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(int id) {
-        productRepository.delete(id);
+        productRepository.deleteById(id);
     }
 }
