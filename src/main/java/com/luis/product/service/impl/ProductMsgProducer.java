@@ -2,6 +2,7 @@ package com.luis.product.service.impl;
 
 import com.luis.product.model.Product;
 import com.luis.product.model.ProductUpdMsg;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +17,8 @@ public class ProductMsgProducer {
     @Autowired
     JmsTemplate prodUpdTemplate;
 
-    @Value("${jms.ProductTopic}")
-    private String productTopic;
+    //@Value("${jms.ProductTopic}")
+    private String productTopic = "ProductT";
 
     @Bean
     public MessageConverter jacksonJmsMessageConverter(){

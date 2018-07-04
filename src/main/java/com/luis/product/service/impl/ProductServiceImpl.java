@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     ProductMsgProducer producer;
 
     @Override
-    public Product getProduct(String id) {
+    public Product getProduct(Integer id) {
         return (productRepository.findById(id)).get();
     }
 
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Product product, String id) {
+    public Product updateProduct(Product product, Integer id) {
         Optional<Product> optional = productRepository.findById(id);
         Product existingProduct = optional.get();
         existingProduct.setCatId(product.getCatId());
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(String id) {
+    public void deleteProduct(Integer id) {
         Optional<Product> optional = productRepository.findById(id);
         Product existingProduct = optional.get();
         productRepository.deleteById(id);
