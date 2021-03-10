@@ -27,7 +27,7 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: Test Actions!
+        run: echo "Test Actions!"
       
       - name: Setup Maven
         uses: aahmed-se/setup-maven@v3
